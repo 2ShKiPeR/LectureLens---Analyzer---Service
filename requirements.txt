@@ -4,3 +4,4 @@ openai-whisper
 pydub
 transformers
 torch
+rutermextract

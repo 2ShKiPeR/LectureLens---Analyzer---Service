@@ -3,9 +3,11 @@ import whisper
 import tempfile
 import shutil
 from sentiment import router as sentiment_router
+from keywords import router as keywords_router
 
 app = FastAPI()
 app.include_router(sentiment_router)
+app.include_router(keywords_router)
 
 model = whisper.load_model("base")  # можешь использовать "small" или "tiny" для ускорения
 
