@@ -2,8 +2,11 @@ from fastapi import FastAPI, File, UploadFile
 import whisper
 import tempfile
 import shutil
+from sentiment import router as sentiment_router
 
 app = FastAPI()
+app.include_router(sentiment_router)
+
 model = whisper.load_model("base")  # можешь использовать "small" или "tiny" для ускорения
 
 @app.post("/transcribe")
@@ -14,3 +17,4 @@ async def transcribe(audio: UploadFile = File(...)):
 
     result = model.transcribe(temp_audio_path)
     return {"text": result["text"]}
+
